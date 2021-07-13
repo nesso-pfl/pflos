@@ -1,0 +1,16 @@
+## Standalone 
+- Rust で書く理由
+  - パターンマッチや所有権などの強力なシステムが使える
+  - C や C++ にありがちな [undefined behavior](https://www.nayuki.io/page/undefined-behavior-in-c-and-cplusplus-programs) や [メモリ安全](https://tonyarcieri.com/it-s-time-for-a-memory-safety-intervention) の問題に悩まされずに開発できる
+- `#![no_std]` を記述した
+  - OS の機能に依存しないベアメタルなプログラムを書く必要があるため
+- Language items を知った
+  - コンパイラの内部に必要な関数や型のこと
+  - `#[lang = "item"]` の構文でコンパイラに情報を提供する
+- `eh_personality` は、[stack unwinding](https://www.bogotobogo.com/cplusplus/stackunwinding.php) を実装する language item
+  - 複雑なので今回は使わないで行く
+- `#![no_main]` で、プログラムの entry point を書き換え可能にする
+  - 通常 rust プログラムは main 関数の実行前に `crt0` という C のプログラムが entry point になるが、それを無効化している
+  -  entry point : 最初に実行されるプログラム
+- `#[no_mangle]` で、 `hoge` 関数がコンパイル時に命名が暗号化されるのを防ぐ
+  - linker に entry point を伝えるときに名前が変わっていると困るので

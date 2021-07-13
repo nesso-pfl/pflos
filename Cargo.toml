@@ -1,0 +1,13 @@
+[package]
+name = "pflos"
+version = "0.1.0"
+authors = ["nesso <32949286+nesso-pfl@users.noreply.github.com>"]
+edition = "2018"
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
+[dependencies]
