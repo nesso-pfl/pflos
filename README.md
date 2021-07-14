@@ -64,3 +64,15 @@
   - rust でデフォルトで無効なメモリ操作の関数を有効化する
   - これは普通 C ライブラリから提供されるものだが、今回 C は使わないので
 
+## kernel の起動
+1. kernel をコンパイルする
+1. bootable disk に入れる
+1. linker 使って kernel を bootloader に link する
+1. ハードウェア上で kernel を起動する
+
+を、するために...
+
+- bootloader を実装する代わりに、 `bootloader` crate を利用する
+- コンパイル後の kernel と bootloader を link するために `bootimage` crate を利用する
+- `.cargo/config.toml` に `target.cfg` を追加
+  - OS の指定と、 `cargo run` したときに実行されるコマンドを指定する
