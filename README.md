@@ -76,3 +76,11 @@
 - コンパイル後の kernel と bootloader を link するために `bootimage` crate を利用する
 - `.cargo/config.toml` に `target.cfg` を追加
   - OS の指定と、 `cargo run` したときに実行されるコマンドを指定する
+
+## VGA Text Mode
+- 二次元配列形式で、25行80列出力できる
+- 配列の各要素は2 byte
+  - 1 byte 目は、出力されるべき文字をASCIIエンコーディングで表す
+  - 2 byte 目は、文字がどのような表示をされるのかを表す
+- アドレス 0xb8000 に memory-mapped された I/O を通じてアクセスできる
+  - RAM でなく、直接アクセスする
